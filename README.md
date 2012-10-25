@@ -3,7 +3,7 @@
 ## Making CouchDB development easy
  
 Erica is a tool that helps you to create couchdb design docs,
-and web applications (couchapps)
+and web applications (couchapps), and generally get files to couchdb.
 
 ##Requirements
 
@@ -63,6 +63,30 @@ just use the db name in push command line if you want:eri
 
 ## Detailed Usage:
 
+    # erica command
+
+Where available commands are:
+
+    push        [options...] [dir] dest  push anything to couchdb
+    create-web  [appid=myapp] ...        Create a webapp. Default:
+                                         appid=myapp, lang=javascript
+    create-ddoc [appid=myapp] ...        Create a blank ddoc, Default:
+                                         appid=myapp, lang=javascript
+    create-app  appid=AppID lang=Lang    Create a blank couchapp, Default:
+                                         appid=myapp, lang=javascript
+    create      template= [vars...]      create an application using a
+                                         template
+    init                                 initialize a .couchapprc
+    clone       [option] source dir      clone a document from couchdb
+    browse                               display the erica in the
+                                         browser.
+    web         port=Port [dir]          launch the web ui
+    help                                 Show the program options
+    version                              Show version information
+
+
+And more general options
+
     $ erica -h
     Usage: erica [-h] [-c] [-v] [-f] [-V] [--is-ddoc <is_ddoc>] [--docid <docid>] [--atomic <atomic>] [...] <command,...>
 
@@ -76,34 +100,7 @@ just use the db name in push command line if you want:eri
       --atomic		Send attachments inline with push command
       command		Command to run (e.g. push)
 
-Available commands are:
 
-    create-web  [appid=myapp] ...        Create a webapp. Default:
-                                         appid=myapp, lang=javascript
-    create-ddoc [appid=myapp] ...        Create a blank ddoc, Default:
-                                         appid=myapp, lang=javascript
-    create-app  appid=AppID lang=Lang    Create a blank couchapp, Default:
-                                         appid=myapp, lang=javascript
-    create      template= [vars...]      create an application using a
-                                         template
-    init                                 initialize a .couchapprc
-    push        [options...] [dir] dest  push a document to couchdb
-    clone       [option] source dir      clone a document from couchdb
-    browse                               display the erica in the
-                                         browser.
-    web         port=Port [dir]          launch the web ui
-    help                                 Show the program options
-    version                              Show version information
-    
-Provided templates are for now:
-
-* web (the template used with the create-web command)
-* ddoc (the default create used for create-ddoc command)
-* example: a simple couchapp exampole
-* couchapp: a simple template with the good old couchapp javascript
-  library.
-
-You can add your own template in ~/.erica/templates.
 
 
 ### 1 . About the Design Doc
@@ -161,6 +158,20 @@ Add an `.ericaignore` file to the root of your app, as a JSON array
 of regular expressions of files or folders to be excluded from pushes.
 
     ["passwords.txt", "^\.ssh", "^\.*"]
+
+When using templates, follow this format
+
+    # ercia create template=name
+
+Provided templates are for now:
+
+* web (the template used with the create-web command)
+* ddoc (the default create used for create-ddoc command)
+* example: a simple couchapp exampole
+* couchapp: a simple template with the good old couchapp javascript library.
+
+You can add your own template in ~/.erica/templates.
+
 
 ## Getting Help
 
