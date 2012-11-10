@@ -1,2 +1,3 @@
 @echo off
-escript.exe bootstrap %*
+call rebar get-deps
+call rebar -D WITH_MOCHIJSON compile
